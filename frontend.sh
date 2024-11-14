@@ -53,7 +53,7 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip &>>$LOG_FILE
 VALIDATE $? "Extract frontend code"
 
-cp /home/ec2-user/expense-project/expense.conf /etc/nginx/default.d/expense.conf
+cp /home/ec2-user/expense-project/expense.conf /etc/nginx/default.d/expense.conf #if we put expense.confix in nginx directory then from frontend api request go to backend
 VALIDATE $? "Copied expense conf"
 
 systemctl restart nginx &>>$LOG_FILE
