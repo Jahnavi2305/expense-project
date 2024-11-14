@@ -4,7 +4,7 @@ R="\e[31m"  #to print red colour
 G="\e[32m"  #to print green  colour
 Y="\e[33m"  #to print yellow colour
 
-LOGS_FOLDER="/var/log/shell-script"  #to store logs in this shell script directory
+LOGS_FOLDER="/var/log/expense"  #to store logs in this expense directory
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1) #this will return the folder name 
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S) #this is to craete a timestamp
 LOG_FILE="$LOGS_FOLDRE/$SCRIPT_NAME-$TIMESTAMMP.log"  #logfloder , scriptname,timestamp are together
