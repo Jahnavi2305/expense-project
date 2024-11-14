@@ -52,3 +52,56 @@ VALIDATE $? "Creating expense user"
 else
 echo "user is already craeted ..please check.. $R skipping $N" &>>LOG_FILE
 fi
+
+mkdir -p /app #we are crating a directory ..so -p is used if directory already exists app directory will not be created or else directory will be created.
+ VALIDATE $? "Creating /app folder"
+
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE  # curl command is used to download the content in the file
+
+VALIDATE $? "Downloading the backend application"
+
+cd /app
+rm -rf /app/*  #if multiple times code is downloaded like may be version upadate like that...existing version will be removed and new will be downloaded with this command ...remove the existing code
+unzip /tmp/backend.zip &>>LOG_FILE
+VALIDATE $? "Exatracing backend application code"
+
+npm install #all the dependencies are dowmloaded
+
+cp /home/ec2-user/expense-project/backend.service/etc/systemd/system/backend.service
+
+
+#load the data before running the backend
+
+#this will connect 
+dnf install mysql -y &>>$LOG_FILE
+VALIDATE $? "Installing MySQL Client"
+
+mysql -h mysql.devops20lpa.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+VALIDATE $? "Schema loading"  #database is craeted
+
+systemctl daemon-reload &>>$LOG_FILE
+VALIDATE $? "Daemon reload"
+
+systemctl enable backend &>>$LOG_FILE
+VALIDATE $? "Enabled backend"
+
+systemctl restart backend &>>$LOG_FILE
+VALIDATE $? "Restarted Backend"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
