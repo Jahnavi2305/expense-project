@@ -67,7 +67,7 @@ VALIDATE $? "Exatracing backend application code"
 
 npm install #all the dependencies are dowmloaded
 
-cp /home/ec2-user/expense-project/backend.service/etc/systemd/system/backend.service
+cp /home/ec2-user/expense-project/backend.service /etc/systemd/system/backend.service
 
 
 #load the data before running the backend
