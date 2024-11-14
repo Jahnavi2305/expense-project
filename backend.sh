@@ -28,7 +28,7 @@ VALIDATE(){
         echo -e "$2 is... $G SUCCESS $N" | tee -a $LOG_FILE
     fi
 }
-
+CHECK_ROOT
 echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
 dnf module disable nodejs -y &>>LOG_FILE #redirecting logs to log file
